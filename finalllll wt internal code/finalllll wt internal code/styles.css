@@ -1,0 +1,13 @@
+body{font-family:Arial,sans-serif;}
+.hover-dropdown.dropdown:hover .dropdown-menu{display:block;}
+.fruit-card{border:1px solid #ddd;border-radius:8px;overflow:hidden;}
+.flip-wrapper{perspective:1000px;height:200px;}
+.flipper{position:relative;width:100%;height:100%;transition:transform 0.6s;transform-style:preserve-3d;}
+.flip-wrapper:hover .flipper{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;top:0;left:0;}
+.flip-front img{width:100%;height:100%;object-fit:cover;}
+.flip-back{transform:rotateY(180deg);background:#f8f9fa;padding:10px;text-align:center;}
+.card-body{text-align:center;padding:10px;}
+.like-btn{background:none;border:none;color:#dc3545;cursor:pointer;}
+.rating span{font-size:1.2rem;cursor:pointer;color:#ccc;}
+.rating span.active{color:gold;}

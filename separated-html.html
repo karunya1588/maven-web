@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SwarnaSutra – Where Gold Meets Grace</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="topbar container d-flex justify-content-between align-items-center py-2">
+      <h1 class="site-title">SwarnaSutra: Where Gold Meets Grace</h1>
+      <nav class="main-nav">
+        <ul class="nav-list d-flex gap-3">
+          <li class="has-submenu">
+            <a href="#productsSection" class="nav-link">Products ▾</a>
+            <ul class="submenu" id="productsDropdown">
+            </ul>
+          </li>
+          <li><a href="#cartSection" id="navCart" class="nav-link">Cart <span id="cartBadge" class="badge bg-danger ms-1">0</span></a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container my-4">
+    <section id="toolbar" class="mb-4">
+      <div class="d-flex gap-3 flex-wrap">
+        <select id="sortSelect" class="form-select form-select-sm" style="min-width:160px;">
+          <option value="default">Featured</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="name-az">Name: A → Z</option>
+          <option value="name-za">Name: Z → A</option>
+        </select>
+
+        <select id="brandFilter" class="form-select form-select-sm" style="min-width:160px;">
+          <option value="all">All Brands</option>
+        </select>
+
+        <button id="clearFilters" class="btn btn-outline-secondary btn-sm">Clear Filters</button>
+      </div>
+    </section>
+
+    <section id="productsSection" class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h3 id="pageTitle" class="m-0">Products</h3>
+      </div>
+      <div class="row" id="product-row"></div>
+    </section>
+
+    <section id="cartSection" class="mb-5" style="display:none;">
+      <h3>Your Cart</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr><th></th><th>Name</th><th>Price</th><th>Action</th></tr>
+          </thead>
+          <tbody id="cartBody"></tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-end">
+        <div><strong>Total:</strong> <span id="cartTotal">₹0</span></div>
+      </div>
+    </section>
+
+    <section id="contact" class="mb-5">
+      <h3>Contact Us</h3>
+      <p>Email: <a href="mailto:swarnasutra@gmail.com" style="color: var(--gold-color);">swarnasutra@gmail.com</a></p>
+      <p>Phone: <a href="tel:+919876543210" style="color: var(--gold-color);">+91 98765 43210</a></p>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white py-3">
+    <div class="container text-center">© 2025 SwarnaSutra</div>
+  </footer>
+
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1200;">
+    <div id="cartToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="cartToastBody">Added to cart</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

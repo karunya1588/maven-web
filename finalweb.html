@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SwarnaSutra – Where Gold Meets Grace</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --gold-color: #d4af37;
+      --dark-gold: #b8941f;
+      --light-gold: #f4e9c7;
+    }
+
+    * {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(135deg, #fff 0%, #f9f7f4 100%);
+    }
+
+    .site-header {
+      background: linear-gradient(135deg, var(--gold-color) 0%, var(--dark-gold) 100%);
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    }
+
+    .site-title {
+      font-family: 'serif';
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      color: #fff !important;
+    }
+
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      color: #fff !important;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .has-submenu {
+      position: relative;
+    }
+
+    .submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      min-width: 200px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      list-style: none;
+      padding: 10px 0;
+      margin: 0;
+    }
+
+    .has-submenu:hover .submenu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .submenu li {
+      padding: 0;
+    }
+
+    .submenu a {
+      color: #333 !important;
+      padding: 10px 20px;
+      display: block;
+      transition: background 0.3s ease;
+    }
+
+    .submenu a:hover {
+      background: var(--light-gold);
+    }
+
+    .product-card {
+      perspective: 1000px;
+      height: 400px;
+      margin-bottom: 2rem;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .product-card:not(.no-flip):hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      background: white;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(135deg, var(--light-gold) 0%, #fff 100%);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-name {
+      color: var(--gold-color);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .price {
+      color: var(--dark-gold);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .rating-stars {
+      color: #ffc107;
+      cursor: pointer;
+    }
+
+    .rating-stars .fa-star {
+      transition: color 0.3s ease;
+    }
+
+    .rating-stars .fa-star:hover,
+    .rating-stars .fa-star.active {
+      color: #ff9800;
+    }
+
+    .like-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: #ddd;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      z-index: 10;
+    }
+
+    .like-btn:hover,
+    .like-btn.liked {
+      color: #e91e63;
+      transform: scale(1.1);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-color) 0%, var(--dark-gold) 100%);
+      border: none;
+      color: white;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 10;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      color: white;
+    }
+
+    .cart-item {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    #toolbar select {
+      border: 2px solid var(--light-gold);
+    }
+
+    #toolbar select:focus {
+      border-color: var(--gold-color);
+      box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+    }
+
+    footer {
+      background: linear-gradient(135deg, var(--dark-gold) 0%, #8b6914 100%) !important;
+    }
+
+    .toast-success {
+      background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .product-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .card-actions {
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      .site-title {
+        font-size: 1.2rem;
+      }
+      
+      .nav-list {
+        flex-direction: column;
+        gap: 10px !important;
+      }
+      
+      .product-card {
+        height: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="topbar container d-flex justify-content-between align-items-center py-2">
+      <h1 class="site-title">SwarnaSutra: Where Gold Meets Grace</h1>
+      <nav class="main-nav">
+        <ul class="nav-list d-flex gap-3">
+          <li class="has-submenu">
+            <a href="#productsSection" class="nav-link">Products ▾</a>
+            <ul class="submenu" id="productsDropdown">
+            </ul>
+          </li>
+          <li><a href="#cartSection" id="navCart" class="nav-link">Cart <span id="cartBadge" class="badge bg-danger ms-1">0</span></a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container my-4">
+    <section id="toolbar" class="mb-4">
+      <div class="d-flex gap-3 flex-wrap">
+        <select id="sortSelect" class="form-select form-select-sm" style="min-width:160px;">
+          <option value="default">Featured</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="name-az">Name: A → Z</option>
+          <option value="name-za">Name: Z → A</option>
+        </select>
+
+        <select id="brandFilter" class="form-select form-select-sm" style="min-width:160px;">
+          <option value="all">All Brands</option>
+        </select>
+
+        <button id="clearFilters" class="btn btn-outline-secondary btn-sm">Clear Filters</button>
+      </div>
+    </section>
+
+    <section id="productsSection" class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h3 id="pageTitle" class="m-0">Products</h3>
+      </div>
+      <div class="row" id="product-row"></div>
+    </section>
+
+    <section id="cartSection" class="mb-5" style="display:none;">
+      <h3>Your Cart</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr><th></th><th>Name</th><th>Price</th><th>Action</th></tr>
+          </thead>
+          <tbody id="cartBody"></tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-end">
+        <div><strong>Total:</strong> <span id="cartTotal">₹0</span></div>
+      </div>
+    </section>
+
+    <section id="contact" class="mb-5">
+      <h3>Contact Us</h3>
+      <p>Email: <a href="mailto:swarnasutra@gmail.com" style="color: var(--gold-color);">swarnasutra@gmail.com</a></p>
+      <p>Phone: <a href="tel:+919876543210" style="color: var(--gold-color);">+91 98765 43210</a></p>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white py-3">
+    <div class="container text-center">© 2025 SwarnaSutra</div>
+  </footer>
+
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1200;">
+    <div id="cartToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="cartToastBody">Added to cart</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const productsData = [
+      {
+        "id": 1,
+        "name": "Classic Gold Necklace",
+        "price": 12500,
+        "brand": "Sona",
+        "img": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&h=200&fit=crop",
+        "description": "Elegantly crafted gold necklace perfect for weddings."
+      },
+      {
+        "id": 2,
+        "name": "Pearl Drop Earrings",
+        "price": 4200,
+        "brand": "PearlCo",
+        "img": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&h=200&fit=crop",
+        "description": "Delicate pearl earrings for everyday elegance."
+      },
+      {
+        "id": 3,
+        "name": "Diamond Solitaire Ring",
+        "price": 45000,
+        "brand": "Spark",
+        "img": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=300&h=200&fit=crop",
+        "description": "A timeless diamond solitaire ring."
+      },
+      {
+        "id": 4,
+        "name": "Kundan Choker",
+        "price": 9800,
+        "brand": "Rajwada",
+        "img": "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=300&h=200&fit=crop",
+        "description": "Traditional kundan choker for festive occasions."
+      },
+      {
+        "id": 5,
+        "name": "Silver Anklet",
+        "price": 1800,
+        "brand": "SilverStar",
+        "img": "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=300&h=200&fit=crop",
+        "description": "Lightweight silver anklet with ghungroo bells."
+      },
+      {
+        "id": 6,
+        "name": "Gold Bracelet",
+        "price": 8500,
+        "brand": "Sona",
+        "img": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=300&h=200&fit=crop",
+        "description": "Elegant gold bracelet with intricate design."
+      },
+      {
+        "id": 7,
+        "name": "Ruby Pendant",
+        "price": 15200,
+        "brand": "PearlCo",
+        "img": "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=300&h=200&fit=crop",
+        "description": "Beautiful ruby pendant with gold chain."
+      },
+      {
+        "id": 8,
+        "name": "Emerald Ring",
+        "price": 32000,
+        "brand": "Spark",
+        "img": "https://images.unsplash.com/photo-1544966503-7adcaa882d7d?w=300&h=200&fit=crop",
+        "description": "Stunning emerald ring with diamond accents."
+      },
+      {
+        "id": 9,
+        "name": "Temple Earrings",
+        "price": 6800,
+        "brand": "Rajwada",
+        "img": "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=300&h=200&fit=crop",
+        "description": "Traditional temple design gold earrings."
+      },
+      {
+        "id": 10,
+        "name": "Silver Chain",
+        "price": 2200,
+        "brand": "SilverStar",
+        "img": "https://images.unsplash.com/photo-1609251312963-8f6b79d4e007?w=300&h=200&fit=crop",
+        "description": "Simple and elegant silver chain necklace."
+      }
+    ];
+
+    let allProducts = productsData;
+    let filteredProducts = [...allProducts];
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let likes = JSON.parse(localStorage.getItem('likes')) || {};
+    let ratings = JSON.parse(localStorage.getItem('ratings')) || {};
+
+    function updateCartBadge() {
+      document.getElementById('cartBadge').textContent = cart.length;
+    }
+
+    function showToast(message) {
+      document.getElementById('cartToastBody').textContent = message;
+      const toast = new bootstrap.Toast(document.getElementById('cartToast'));
+      toast.show();
+    }
+
+    function populateDropdown() {
+      const dropdown = document.getElementById('productsDropdown');
+      dropdown.innerHTML = '<li><a href="#productsSection" onclick="showAllProducts()">All Products</a></li>';
+      
+      allProducts.forEach(product => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="#productsSection" onclick="filterByProduct('${product.name}')">${product.name}</a>`;
+        dropdown.appendChild(li);
+      });
+    }
+
+    function populateBrandFilter() {
+      const brandFilter = document.getElementById('brandFilter');
+      const brands = [...new Set(allProducts.map(p => p.brand))];
+      
+      brands.forEach(brand => {
+        const option = document.createElement('option');
+        option.value = brand;
+        option.textContent = brand;
+        brandFilter.appendChild(option);
+      });
+    }
+
+    function renderProducts() {
+      const container = document.getElementById('product-row');
+      container.innerHTML = '';
+
+      filteredProducts.forEach(product => {
+        const productLikes = likes[product.id] || 0;
+        const isLiked = likes[`${product.id}_liked`] || false;
+        const productRating = ratings[product.id] || 0;
+
+        const col = document.createElement('div');
+        col.className = 'col-lg-3 col-md-4 col-sm-6 mb-4';
+        
+        col.innerHTML = `
+          <div class="product-card" data-product-id="${product.id}">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="card h-100">
+                  <img src="${product.img}" class="product-img" alt="${product.name}" onerror="this.src='https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&h=200&fit=crop'">
+                  <div class="card-body d-flex flex-column">
+                    <h6 class="product-name">${product.name}</h6>
+                    <p class="price">₹${product.price.toLocaleString()}</p>
+                    <div class="rating-stars mb-2" data-product-id="${product.id}">
+                      ${[1,2,3,4,5].map(star => 
+                        `<i class="fas fa-star ${star <= productRating ? 'active' : ''}" data-rating="${star}"></i>`
+                      ).join('')}
+                    </div>
+                    <div class="card-actions d-flex justify-content-between align-items-center mt-auto">
+                      <button class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${product.id})" onmouseenter="disableFlip(${product.id})" onmouseleave="enableFlip(${product.id})">
+                        <i class="fas fa-heart"></i> <span id="likeCount-${product.id}">${productLikes}</span>
+                      </button>
+                      <button class="btn btn-gold btn-sm" onclick="addToCart(${product.id})" onmouseenter="disableFlip(${product.id})" onmouseleave="enableFlip(${product.id})">Add to Cart</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-back">
+                <div class="text-center">
+                  <h5 class="product-name">${product.name}</h5>
+                  <p class="text-muted">${product.description}</p>
+                  <p class="price">₹${product.price.toLocaleString()}</p>
+                  <div class="d-flex justify-content-center align-items-center gap-3 mt-3">
+                    <button class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${product.id})">
+                      <i class="fas fa-heart"></i> <span>${productLikes}</span>
+                    </button>
+                    <button class="btn btn-gold btn-sm" onclick="addToCart(${product.id})">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        container.appendChild(col);
+      });
+
+      document.querySelectorAll('.rating-stars').forEach(stars => {
+        const productId = stars.dataset.productId;
+        stars.addEventListener('click', (e) => {
+          if (e.target.classList.contains('fa-star')) {
+            const rating = parseInt(e.target.dataset.rating);
+            setRating(productId, rating);
+          }
+        });
+      });
+    }
+
+    function disableFlip(productId) {
+      const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+      productCard.classList.add('no-flip');
+    }
+
+    function enableFlip(productId) {
+      const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+      productCard.classList.remove('no-flip');
+    }
+
+    function setRating(productId, rating) {
+      ratings[productId] = rating;
+      localStorage.setItem('ratings', JSON.stringify(ratings));
+      
+      const stars = document.querySelector(`[data-product-id="${productId}"]`).querySelectorAll('.fa-star');
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+
+    function toggleLike(productId) {
+      const isLiked = likes[`${productId}_liked`] || false;
+      
+      if (isLiked) {
+        likes[productId] = Math.max(0, (likes[productId] || 0) - 1);
+        likes[`${productId}_liked`] = false;
+      } else {
+        likes[productId] = (likes[productId] || 0) + 1;
+        likes[`${productId}_liked`] = true;
+      }
+      
+      localStorage.setItem('likes', JSON.stringify(likes));
+      
+      const likeBtn = document.querySelector(`button[onclick="toggleLike(${productId})"]`);
+      const likeCount = document.getElementById(`likeCount-${productId}`);
+      
+      likeBtn.classList.toggle('liked');
+      likeCount.textContent = likes[productId] || 0;
+    }
+
+    function addToCart(productId) {
+      const product = allProducts.find(p => p.id === productId);
+      if (product && !cart.find(item => item.id === productId)) {
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartBadge();
+        showToast(`${product.name} added to cart`);
+        updateCartDisplay();
+      } else if (cart.find(item => item.id === productId)) {
+        showToast(`${product.name} is already in cart`);
+      }
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(item => item.id !== productId);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartBadge();
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      const cartBody = document.getElementById('cartBody');
+      const cartTotal = document.getElementById('cartTotal');
+      
+      cartBody.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        total += item.price;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><img src="${item.img}" alt="${item.name}" class="cart-item"></td>
+          <td>${item.name}</td>
+          <td>₹${item.price.toLocaleString()}</td>
+          <td><button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${item.id})">Remove</button></td>
+        `;
+        cartBody.appendChild(row);
+      });
+
+      cartTotal.textContent = `₹${total.toLocaleString()}`;
+    }
+
+    function sortProducts() {
+      const sortValue = document.getElementById('sortSelect').value;
+      
+      switch(sortValue) {
+        case 'price-asc':
+          filteredProducts.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-desc':
+          filteredProducts.sort((a, b) => b.price - a.price);
+          break;
+        case 'name-az':
+          filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+        case 'name-za':
+          filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+          break;
+        default:
+          filteredProducts = [...allProducts];
+      }
+      
+      renderProducts();
+    }
+
+    function filterByBrand() {
+      const brandValue = document.getElementById('brandFilter').value;
+      
+      if (brandValue === 'all') {
+        filteredProducts = [...allProducts];
+      } else {
+        filteredProducts = allProducts.filter(product => product.brand === brandValue);
+      }
+      
+      sortProducts();
+    }
+
+    function clearFilters() {
+      document.getElementById('sortSelect').value = 'default';
+      document.getElementById('brandFilter').value = 'all';
+      filteredProducts = [...allProducts];
+      renderProducts();
+    }
+
+    function showAllProducts() {
+      document.getElementById('productsSection').style.display = 'block';
+      document.getElementById('cartSection').style.display = 'none';
+      document.getElementById('pageTitle').textContent = 'Products';
+      filteredProducts = [...allProducts];
+      renderProducts();
+    }
+
+    function filterByProduct(productName) {
+      filteredProducts = allProducts.filter(product => product.name === productName);
+      document.getElementById('pageTitle').textContent = productName;
+      renderProducts();
+    }
+
+    function showCart() {
+      document.getElementById('productsSection').style.display = 'none';
+      document.getElementById('cartSection').style.display = 'block';
+      updateCartDisplay();
+    }
+
+    document.getElementById('sortSelect').addEventListener('change', sortProducts);
+    document.getElementById('brandFilter').addEventListener('change', filterByBrand);
+    document.getElementById('clearFilters').addEventListener('click', clearFilters);
+    document.getElementById('navCart').addEventListener('click', (e) => {
+      e.preventDefault();
+      showCart();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      populateDropdown();
+      populateBrandFilter();
+      renderProducts();
+      updateCartBadge();
+      updateCartDisplay();
+    });
+  </script>
+</body>
+</html>

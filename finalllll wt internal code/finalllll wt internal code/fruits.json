@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Apple",
+    "type": "stone",
+    "rating": 0,
+    "price": 50,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg",
+    "description": "Fresh red apples."
+  },
+  {
+    "id": 2,
+    "name": "Banana",
+    "type": "tropical",
+    "rating": 0,
+    "price": 20,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg",
+    "description": "Sweet bananas."
+  },
+  {
+    "id": 3,
+    "name": "Mango",
+    "type": "tropical",
+    "rating": 0,
+    "price": 70,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/90/Hapus_Mango.jpg",
+    "description": "Juicy mangoes."
+  },
+  {
+    "id": 4,
+    "name": "Orange",
+    "type": "citrus",
+    "rating": 0,
+    "price": 40,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg",
+    "description": "Citrus oranges."
+  }
+]

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Froot Market - Fruits</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">🍇 Froot Market</a>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item dropdown hover-dropdown">
+          <a class="nav-link dropdown-toggle" href="#">Products</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="fruits.html?type=all">All Fruits</a></li>
+            <li><a class="dropdown-item" href="fruits.html?type=citrus">Citrus</a></li>
+            <li><a class="dropdown-item" href="fruits.html?type=berry">Berry</a></li>
+            <li><a class="dropdown-item" href="fruits.html?type=tropical">Tropical</a></li>
+            <li><a class="dropdown-item" href="fruits.html?type=stone">Stone Fruit</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link position-relative" href="#cart">Cart
+            <span id="cartBadge" class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill">0</span>
+          </a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container my-4">
+    <div class="row">
+      <aside class="col-md-3 mb-4">
+        <div class="card p-3">
+          <h6>Sort By</h6>
+          <select id="sortSelect" class="form-select mb-3">
+            <option value="name">Name (A-Z)</option>
+            <option value="price-asc">Price (Low-High)</option>
+            <option value="price-desc">Price (High-Low)</option>
+          </select>
+          <h6>Filter By Type</h6>
+          <select id="filterSelect" class="form-select">
+            <option value="all">All Fruits</option>
+            <option value="citrus">Citrus</option>
+            <option value="berry">Berry</option>
+            <option value="tropical">Tropical</option>
+            <option value="stone">Stone Fruit</option>
+          </select>
+        </div>
+      </aside>
+      <main class="col-md-9">
+        <div id="fruitsGrid" class="row g-4"></div>
+      </main>
+    </div>
+    <section id="cart" class="mt-5">
+      <div class="card p-3">
+        <h3>🛒 Cart</h3>
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle text-center">
+            <thead class="table-success">
+              <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Cost (Each)</th>
+                <th>Total</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="cartTable"></tbody>
+          </table>
+        </div>
+        <h5 class="text-end">Total Amount: ₹<span id="cartTotal">0</span></h5>
+      </div>
+    </section>
+  </div>
+
+  <footer id="contact" class="text-center py-4 bg-light">
+    <h4>Contact Us</h4>
+    <p>Email: support@example.com</p>
+    <p>Phone: +91-1234567890</p>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="addToast" class="toast text-bg-success border-0" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">Item added to cart</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
